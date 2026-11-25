@@ -1,6 +1,6 @@
 # Estructura de Datos — Parcial III
 
-Repositorio de trabajos de la Unidad III.
+Repositorio del sitio de la Unidad 6.
 
 ## Sitio: Métodos de búsqueda
 
@@ -10,7 +10,7 @@ Material didáctico e interactivo sobre:
 - 6.2 Búsqueda binaria
 - 6.3 Búsqueda por funciones hash
 
-**Página:** <https://yamil-castro-28.github.io/EstructuraDatos_Parcial_III/>
+**Página:** <https://yamil-castro-28.github.io/metodos-busqueda-estructura-datos/>
 
 ### Integrantes
 
