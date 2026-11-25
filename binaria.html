@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explicación y demostración interactiva de la búsqueda binaria.">
+  <title>6.2 Búsqueda binaria | Métodos de búsqueda</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="binary">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header"><div class="nav-shell">
+    <a class="brand" href="index.html"><span class="brand-mark">⌕</span><span>Métodos de búsqueda</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menú</button>
+    <nav class="main-nav" id="main-nav" aria-label="Navegación principal">
+      <a data-nav="home" href="index.html">Inicio</a><a data-nav="sequential" href="secuencial.html">Secuencial</a>
+      <a data-nav="binary" href="binaria.html">Binaria</a><a data-nav="hash" href="hash.html">Hash</a>
+      <a data-nav="compare" href="comparacion.html">Comparación</a><a data-nav="sources" href="fuentes.html">Fuentes</a>
+    </nav>
+  </div></header>
+
+  <main id="contenido">
+    <section class="page-hero"><div class="container">
+      <p class="eyebrow">6.2 · Búsqueda binaria</p>
+      <h1>Descartar la mitad</h1>
+      <p class="lede">La clave se compara con el elemento central. Según el resultado, el algoritmo conserva solo la mitad en la que todavía puede estar el valor.</p>
+      <div class="concept-band">
+        <div class="concept"><strong>Requisito</strong><span>La colección debe estar ordenada por la clave de búsqueda.</span></div>
+        <div class="concept"><strong>Regla</strong><span>Menor: izquierda. Mayor: derecha. Igual: encontrado.</span></div>
+        <div class="concept"><strong>Peor caso</strong><span>O(log n): el intervalo se divide en cada paso.</span></div>
+      </div>
+    </div></section>
+
+    <section class="section tint"><div class="container">
+      <div class="section-head"><p class="eyebrow">Laboratorio</p><h2>Reduce el intervalo</h2><p>Los elementos atenuados ya fueron descartados. El borde morado marca el intervalo que sigue activo.</p></div>
+      <div class="demo-shell">
+        <div class="demo-main">
+          <div class="controls">
+            <div class="field"><label for="binary-target">Valor buscado</label><input id="binary-target" type="number" value="63"></div>
+            <button class="button small" id="binary-next" type="button">Siguiente paso</button>
+            <button class="button secondary small" id="binary-auto" type="button">Ejecutar</button>
+            <button class="button secondary small" id="binary-reset" type="button">Reiniciar</button>
+          </div>
+          <div class="array" id="binary-array" aria-label="Lista ordenada"></div>
+          <div class="status" id="binary-status" aria-live="polite"></div>
+        </div>
+        <aside class="demo-side">
+          <h3>Estado del intervalo</h3>
+          <div class="metrics">
+            <div class="metric"><strong id="binary-comparisons">0</strong><span>comparaciones</span></div>
+            <div class="metric"><strong id="binary-interval">[0, 9]</strong><span>límites activos</span></div>
+          </div>
+          <p><span class="formula">medio = bajo + ⌊(alto − bajo) / 2⌋</span></p>
+        </aside>
+      </div>
+    </div></section>
+
+    <section class="section"><div class="container two-column">
+      <article class="content-panel"><h2>Por qué es rápida</h2><p>Con 1,024 elementos, una búsqueda secuencial podría revisar los 1,024. La binaria necesita como máximo unas 11 comparaciones, porque cada paso reduce el intervalo a la mitad.</p><p>Ordenar los datos tiene un costo. La ventaja aparece cuando la colección ya está ordenada o se harán muchas búsquedas.</p></article>
+      <article class="content-panel"><h2>Pseudocódigo</h2><pre><code>bajo = 0
+alto = n - 1
+mientras bajo ≤ alto
+    medio = bajo + (alto - bajo) / 2
+    si datos[medio] = clave: regresar medio
+    si clave &lt; datos[medio]: alto = medio - 1
+    si no: bajo = medio + 1
+regresar NO_ENCONTRADO</code></pre></article>
+    </div></section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-grid"><div><strong>6.2 Búsqueda binaria</strong><p>Unidad 6 · Estructura de Datos</p></div><nav class="footer-nav"><a href="hash.html">Continuar con hash</a><a href="fuentes.html">Fuentes</a></nav></div></footer>
+  <script src="common.js"></script><script src="demos.js"></script>
+</body>
+</html>

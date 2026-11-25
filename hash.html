@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explicación y demostración interactiva de búsqueda mediante funciones hash.">
+  <title>6.3 Funciones hash | Métodos de búsqueda</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="hash">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header"><div class="nav-shell">
+    <a class="brand" href="index.html"><span class="brand-mark">⌕</span><span>Métodos de búsqueda</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menú</button>
+    <nav class="main-nav" id="main-nav" aria-label="Navegación principal">
+      <a data-nav="home" href="index.html">Inicio</a><a data-nav="sequential" href="secuencial.html">Secuencial</a>
+      <a data-nav="binary" href="binaria.html">Binaria</a><a data-nav="hash" href="hash.html">Hash</a>
+      <a data-nav="compare" href="comparacion.html">Comparación</a><a data-nav="sources" href="fuentes.html">Fuentes</a>
+    </nav>
+  </div></header>
+
+  <main id="contenido">
+    <section class="page-hero"><div class="container">
+      <p class="eyebrow">6.3 · Búsqueda por funciones de hash</p>
+      <h1>Convertir una clave en posición</h1>
+      <p class="lede">Una función hash recibe una clave y produce un índice de la tabla. La búsqueda empieza en ese lugar, sin recorrer toda la colección.</p>
+      <div class="concept-band">
+        <div class="concept"><strong>Función</strong><span>h(k) asigna la clave k a una posición válida de la tabla.</span></div>
+        <div class="concept"><strong>Colisión</strong><span>Dos claves diferentes producen la misma posición inicial.</span></div>
+        <div class="concept"><strong>Costo promedio</strong><span>O(1) cuando la tabla y su política están bien diseñadas.</span></div>
+      </div>
+    </div></section>
+
+    <section class="section tint"><div class="container">
+      <div class="section-head"><p class="eyebrow">Laboratorio</p><h2>Inserta y busca claves</h2><p>Esta tabla tiene 11 posiciones. Usa <span class="formula">h(k) = k mod 11</span> y sondeo lineal: si una posición está ocupada, prueba la siguiente.</p></div>
+      <div class="demo-shell">
+        <div class="demo-main">
+          <div class="controls">
+            <div class="field"><label for="hash-key">Clave</label><input id="hash-key" type="number" min="0" max="999" value="35"></div>
+            <button class="button small" id="hash-insert" type="button">Insertar</button>
+            <button class="button secondary small" id="hash-search" type="button">Buscar</button>
+            <button class="button secondary small" id="hash-reset" type="button">Reiniciar tabla</button>
+          </div>
+          <div class="hash-table" id="hash-table" aria-label="Tabla hash"></div>
+          <div class="status" id="hash-status" aria-live="polite">La tabla usa h(k) = k mod 11 y sondeo lineal para resolver colisiones.</div>
+        </div>
+        <aside class="demo-side">
+          <h3>Estado de la tabla</h3>
+          <div class="metrics">
+            <div class="metric"><strong id="hash-operations">0</strong><span>posiciones revisadas</span></div>
+            <div class="metric"><strong id="hash-load">6/11</strong><span>posiciones ocupadas</span></div>
+          </div>
+          <ol class="steps"><li>Calcula h(clave).</li><li>Revisa esa posición.</li><li>Si hay colisión, aplica la política de resolución.</li></ol>
+        </aside>
+      </div>
+    </div></section>
+
+    <section class="section"><div class="container two-column">
+      <article class="content-panel"><h2>Qué hace una buena función</h2><p>Debe producir siempre el mismo índice para la misma clave y distribuir las claves de forma uniforme. Una distribución desigual crea muchas colisiones y más trabajo.</p><p>El sondeo lineal es una forma de direccionamiento abierto. Otra solución común es el encadenamiento, donde cada posición conserva una colección de elementos.</p></article>
+      <article class="content-panel"><h2>Pseudocódigo de búsqueda</h2><pre><code>i = h(clave)
+mientras tabla[i] no esté vacía
+    si tabla[i].clave = clave
+        regresar tabla[i]
+    i = (i + 1) mod tamaño
+regresar NO_ENCONTRADO</code></pre></article>
+    </div></section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-grid"><div><strong>6.3 Funciones hash</strong><p>Unidad 6 · Estructura de Datos</p></div><nav class="footer-nav"><a href="comparacion.html">Comparar los métodos</a><a href="fuentes.html">Fuentes</a></nav></div></footer>
+  <script src="common.js"></script><script src="demos.js"></script>
+</body>
+</html>
